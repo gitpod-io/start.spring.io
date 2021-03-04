@@ -1,0 +1,12 @@
+tasks:
+  - command: |
+      shopt -s dotglob
+      rm -rf /workspace/start.spring.io/*
+      wget -qO- $URL | jar xvf /dev/stdin
+      mv * temp
+      mv temp/* .
+      rm -rf temp
+      chmod 777 mvnw
+      ./mvnw clean install -DskipTests
+      ./mvnw spring-boot:run
+
